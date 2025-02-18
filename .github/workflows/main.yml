@@ -36,5 +36,4 @@ jobs:
       run: |
         echo "$DEPLOY_KEY" > deploy_key
         chmod 600 deploy_key
-        ssh -i deploy_key user@yourdomain.com "cd /path/to/project && git pull origin main && docker-compose -f docker-compose.prod.yml up -d --build"
-
+        ssh -i deploy_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /path/to/project && git pull origin main && docker-compose -f docker-compose.prod.yml up -d --build"
